@@ -8,18 +8,31 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; height: 100%; background: #fff; overflow: hidden; }
 
-  .stack { width: 100vw; display: flex; flex-direction: column; }
+  .stack {
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row-head  { flex: 0 0 22.2222%; }
+  .row-torso { flex: 0 0 24.4444%; }
+  .row-legs  { flex: 1; }
 
   .row { position: relative; width: 100%; overflow: hidden; margin-bottom: -1px; }
-
-  /* Size each row using exact aspect ratio of the cropped image */
-  .row-head  { aspect-ratio: 1920 / 240; }
-  .row-torso { aspect-ratio: 1920 / 264; }
-  .row-legs  { aspect-ratio: 1920 / 579; }
-
   .track { display: flex; height: 100%; transition: transform 0.55s cubic-bezier(0.77,0,0.175,1); }
   .slide { flex: 0 0 100%; height: 100%; }
-  .slide img { width: 100%; height: 100%; display: block; object-fit: fill; }
+  .slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .row-head  .slide img { object-position: center top; }
+  .row-torso .slide img { object-position: center center; }
+  .row-legs  .slide img { object-position: center bottom; }
 
   .btn {
     position: absolute; top: 50%; transform: translateY(-50%);
