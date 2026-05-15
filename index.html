@@ -8,10 +8,22 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; background: #fff; overflow-x: hidden; }
   .stack { width: 100vw; display: flex; flex-direction: column; }
+
+  /* Each row is a fraction of the full 16:9 frame height (100vw * 9/16) */
+  .row-head  { height: calc(100vw * 9/16 * 0.222); }
+  .row-torso { height: calc(100vw * 9/16 * 0.245); }
+  .row-legs  { height: calc(100vw * 9/16 * 0.537); }
+
   .row { position: relative; width: 100%; overflow: hidden; }
-  .track { display: flex; transition: transform 0.55s cubic-bezier(0.77,0,0.175,1); }
-  .slide { flex: 0 0 100%; }
-  .slide img { width: 100%; height: auto; display: block; }
+  .track { display: flex; height: 100%; transition: transform 0.55s cubic-bezier(0.77,0,0.175,1); }
+  .slide { flex: 0 0 100%; height: 100%; }
+  .slide img { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+  /* Position each image so only the right slice shows */
+  .row-head  .slide img { object-position: center top; }
+  .row-torso .slide img { object-position: center 42%; }
+  .row-legs  .slide img { object-position: center bottom; }
+
   .btn {
     position: absolute; top: 50%; transform: translateY(-50%);
     z-index: 10; width: 36px; height: 36px; border-radius: 50%;
@@ -28,31 +40,31 @@
 <body>
 <div class="stack">
 
-  <div class="row" id="row-0">
+  <div class="row row-head" id="row-0">
     <div class="track" id="track-0">
-      <div class="slide"><img src="https://i.imgur.com/n2EwZtR.png" alt=""></div>
-      <div class="slide"><img src="https://i.imgur.com/Gq3ptKn.png" alt=""></div>
-      <div class="slide"><img src="https://i.imgur.com/BZ6q20Y.png" alt=""></div>
+      <div class="slide"><img src="h1.png" alt=""></div>
+      <div class="slide"><img src="h2.png" alt=""></div>
+      <div class="slide"><img src="h3.png" alt=""></div>
     </div>
     <button class="btn btn-prev" onclick="slide(0,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
     <button class="btn btn-next" onclick="slide(0,1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
   </div>
 
-  <div class="row" id="row-1">
+  <div class="row row-torso" id="row-1">
     <div class="track" id="track-1">
-      <div class="slide"><img src="https://i.imgur.com/mRdKIcL.png" alt=""></div>
-      <div class="slide"><img src="https://i.imgur.com/MjP6hNL.png" alt=""></div>
-      <div class="slide"><img src="https://i.imgur.com/BDIEta4.png" alt=""></div>
+      <div class="slide"><img src="t1.png" alt=""></div>
+      <div class="slide"><img src="t2.png" alt=""></div>
+      <div class="slide"><img src="t3.png" alt=""></div>
     </div>
     <button class="btn btn-prev" onclick="slide(1,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
     <button class="btn btn-next" onclick="slide(1,1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
   </div>
 
-  <div class="row" id="row-2">
+  <div class="row row-legs" id="row-2">
     <div class="track" id="track-2">
-      <div class="slide"><img src="https://i.imgur.com/fV3CKFp.png" alt=""></div>
-      <div class="slide"><img src="https://i.imgur.com/2FfzmQL.png" alt=""></div>
-      <div class="slide"><img src="https://i.imgur.com/awgQyrr.png" alt=""></div>
+      <div class="slide"><img src="l1.png" alt=""></div>
+      <div class="slide"><img src="l2.png" alt=""></div>
+      <div class="slide"><img src="l3.png" alt=""></div>
     </div>
     <button class="btn btn-prev" onclick="slide(2,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
     <button class="btn btn-next" onclick="slide(2,1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
