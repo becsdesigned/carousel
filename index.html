@@ -6,11 +6,11 @@
 <title>Carousel</title>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; background: #fff; overflow-x: hidden; }
+  html, body { width: 100%; height: 100%; background: #fff; overflow: hidden; }
 
   .stack { width: 100vw; display: flex; flex-direction: column; }
 
-  .row { position: relative; width: 100%; overflow: hidden; }
+  .row { position: relative; width: 100%; overflow: hidden; margin-bottom: -1px; }
 
   /* Size each row using exact aspect ratio of the cropped image */
   .row-head  { aspect-ratio: 1920 / 240; }
