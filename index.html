@@ -6,33 +6,20 @@
 <title>Carousel</title>
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; background: #fff; overflow: hidden; }
+  html, body { width: 100%; background: #fff; overflow-x: hidden; }
 
-  .stack {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Each row is a fixed % of the viewport height matching the 16:9 slice */
-  .row-head  { flex: 0 0 22.2vh; }
-  .row-torso { flex: 0 0 24.5vh; }
-  .row-legs  { flex: 1; }
+  .stack { width: 100vw; display: flex; flex-direction: column; }
 
   .row { position: relative; width: 100%; overflow: hidden; }
+
+  /* Size each row using exact aspect ratio of the cropped image */
+  .row-head  { aspect-ratio: 1920 / 240; }
+  .row-torso { aspect-ratio: 1920 / 264; }
+  .row-legs  { aspect-ratio: 1920 / 579; }
+
   .track { display: flex; height: 100%; transition: transform 0.55s cubic-bezier(0.77,0,0.175,1); }
   .slide { flex: 0 0 100%; height: 100%; }
-  .slide img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-  }
-
-  .row-head  .slide img { object-position: center top; }
-  .row-torso .slide img { object-position: center 42%; }
-  .row-legs  .slide img { object-position: center bottom; }
+  .slide img { width: 100%; height: 100%; display: block; object-fit: fill; }
 
   .btn {
     position: absolute; top: 50%; transform: translateY(-50%);
